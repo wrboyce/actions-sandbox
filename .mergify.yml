@@ -1,0 +1,9 @@
+pull_request_rules:
+  - name: automatic merge dependabot PRs
+    conditions:
+      - author=dependabot[bot]
+      - status-success=build
+      - files=requirements.txt
+    actions:
+      merge:
+        method: merge
