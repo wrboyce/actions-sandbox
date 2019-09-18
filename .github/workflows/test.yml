@@ -6,5 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - uses: wrboyce/python-lint-action@master
+      - name: Install
+        run: pip install -r requirements.txt
       - name: Build
         run: make html
