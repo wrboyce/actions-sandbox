@@ -1,8 +1,8 @@
 workflow "New workflow" {
   on = "push"
-  resolves = ["actions/checkout@master"]
+  resolves = ["wrboyce/python-lint-action@master"]
 }
 
-action "actions/checkout@master" {
-  uses = "actions/checkout@master"
+action "wrboyce/python-lint-action@master" {
+  uses = "wrboyce/python-lint-action@master"
 }
