@@ -29,5 +29,6 @@ jobs:
           && docker buildx create --name builder --use --platform ${{matrix.platform}}
         env:
           DOCKER_BUILDKIT: 1
+      - uses: actions/checkout@v1
       - name: Build Image
         run: make DOCKER_PLATFORMS=${{matrix.platform}} build
