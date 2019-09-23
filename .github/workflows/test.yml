@@ -23,5 +23,9 @@ jobs:
     steps:
       - name: Setup Docker
         run: docker buildx create --name builder --use
+        env:
+          DOCKER_CLI_EXPERIMENTAL: enabled
       - name: Build Image
         run: make DOCKER_PLATFORMS=${matrix.platform} build
+        env:
+          DOCKER_CLI_EXPERIMENTAL: enabled
