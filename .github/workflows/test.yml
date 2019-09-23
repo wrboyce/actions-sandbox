@@ -22,10 +22,12 @@ jobs:
           - linux/arm/v7
     steps:
       - name: Setup Docker
-        run: docker buildx create --name builder --use
+        run: >
+          docker build --platform=local -o . git://github.com/docker/buildx
+          && mkdir -p ~/.docker/cli-plugins/
+          && mv buildx ~/.docker/cli-plugins/docker-buildx
+          && docker buildx create --name builder --use --platform ${{matrix.platform}}
         env:
-          DOCKER_CLI_EXPERIMENTAL: enabled
+          DOCKER_BUILDKIT: 1
       - name: Build Image
-        run: make DOCKER_PLATFORMS=${matrix.platform} build
-        env:
-          DOCKER_CLI_EXPERIMENTAL: enabled
+        run: make DOCKER_PLATFORMS=${{matrix.platform}} build
