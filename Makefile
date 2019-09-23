@@ -41,7 +41,8 @@ help:
 	@echo '                                                                          '
 
 build:
-	echo $(DOCKER_PLATFORMS)
+	@echo Building $(DOCKER_PLATFORMS)...
+	docker buildx build --platform $(DOCKER_PLATFORMS) --load -t test .
 
 html:
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE) $(PELICANOPTS)
